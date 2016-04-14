@@ -7,8 +7,7 @@
  */
 namespace skeeks\cms\i18nDb;
 
-use skeeks\cms\models\Message;
-use skeeks\cms\models\SourceMessage;
+use skeeks\cms\i18nDb\models\SourceMessage;
 use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
 use yii\i18n\DbMessageSource;
