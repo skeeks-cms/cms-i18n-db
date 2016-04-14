@@ -7,7 +7,7 @@
  */
 namespace skeeks\cms\i18nDb\models;
 
-use skeeks\cms\models\query\SourceMessageQuery;
+use skeeks\cms\i18nDb\models\query\SourceMessageQuery;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\db\ActiveRecord;
