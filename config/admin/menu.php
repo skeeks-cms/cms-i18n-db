@@ -13,8 +13,15 @@ return
         [
             [
                 "label"     => \Yii::t('skeeks/i18nDb/app',"Database of translations"),
-                "url"       => ["i18nDb/admin-message"],
-                "img"       => ['\skeeks\cms\i18nDb\assets\I18nDbAsset', 'icons/lang.png']
+                "img"       => ['\skeeks\cms\i18nDb\assets\I18nDbAsset', 'icons/lang.png'],
+                "items"     =>
+                [
+                    [
+                        "label"     => \Yii::t('skeeks/i18nDb/app',"Database of translations"),
+                        "url"       => ["i18nDb/admin-message"],
+                        "img"       => ['\skeeks\cms\i18nDb\assets\I18nDbAsset', 'icons/lang.png']
+                    ],
+                ],
             ],
         ]
     ]
