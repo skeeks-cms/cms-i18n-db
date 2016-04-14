@@ -11,12 +11,22 @@ return [
     [
         'i18n' => [
             'class'     => 'skeeks\cms\i18nDb\I18NDbComponent',
+            'translations' =>
+            [
+                'skeeks/i18nDb/app' => [
+                    'class'             => 'yii\i18n\PhpMessageSource',
+                    'basePath'          => '@skeeks/cms/i18nDb/messages',
+                    'fileMap' => [
+                        'skeeks/i18nDb/app' => 'app.php',
+                    ],
+                ]
+            ]
         ],
     ],
 
     'modules' =>
     [
-        'i18n' => [
+        'i18nDb' => [
             'class'         => '\skeeks\cms\i18nDb\I18nDbModule',
         ]
     ]

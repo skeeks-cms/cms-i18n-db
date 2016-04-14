@@ -60,10 +60,10 @@ class SourceMessage extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'category' => Yii::t('app', 'Category'),
-            'message' => Yii::t('app', 'Message'),
-            'status' => Yii::t('app', 'Translation status')
+            'id' => Yii::t('skeeks/i18nDb/app', 'ID'),
+            'category' => Yii::t('skeeks/i18nDb/app', 'Category'),
+            'message' => Yii::t('skeeks/i18nDb/app', 'Message'),
+            'status' => Yii::t('skeeks/i18nDb/app', 'Translation status')
         ];
     }
 
@@ -103,7 +103,14 @@ class SourceMessage extends ActiveRecord
         /** @var Message $message */
         foreach ($this->messages as $message) {
             $this->link('messages', $message);
-            $message->save();
+            if (!$message->translation && !$message->isNewRecord)
+            {
+                $message->delete();
+            } else if ($message->translation && $message->isNewRecord)
+            {
+                $message->save();
+            }
+
         }
     }
 

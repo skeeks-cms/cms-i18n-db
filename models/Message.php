@@ -51,9 +51,9 @@ class Message extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => \Yii::t('app', 'ID'),
-            'language' => \Yii::t('app', 'Language'),
-            'translation' => \Yii::t('app', 'Translation')
+            'id' => \Yii::t('skeeks/i18nDb/app', 'ID'),
+            'language' => \Yii::t('skeeks/i18nDb/app', 'Language'),
+            'translation' => \Yii::t('skeeks/i18nDb/app', 'Translation')
         ];
     }
     public function getSourceMessage()

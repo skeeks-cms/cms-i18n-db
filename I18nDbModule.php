@@ -10,7 +10,7 @@ namespace skeeks\cms\i18nDb;
  * Class ModuleI18nDb
  * @package skeeks\cms\i18nDb
  */
-class I18nDbModule extends skeeks\cms\base\Module
+class I18nDbModule extends \skeeks\cms\base\Module
 {
     public $controllerNamespace = 'skeeks\cms\i18nDb\controllers';
 }

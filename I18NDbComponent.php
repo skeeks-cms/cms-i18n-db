@@ -21,7 +21,7 @@ use yii\i18n\MissingTranslationEvent;
 class I18NDbComponent extends \skeeks\cms\i18n\components\I18N
 {
     /** @var array */
-    public $missingTranslationHandler = ['skeeks\cms\i18nDb\I18NDb', 'handleMissingTranslation'];
+    public $missingTranslationHandler = ['skeeks\cms\i18nDb\I18NDbComponent', 'handleMissingTranslation'];
 
     /** @var string */
     public $sourceMessageTable = '{{%source_message}}';
@@ -45,18 +45,27 @@ class I18NDbComponent extends \skeeks\cms\i18n\components\I18N
         {
             $this->translations['*'] = [
                 'class' => 'yii\i18n\PhpMessageSource',
-                'on missingTranslation' => $this->missingTranslationHandler
             ];
         }
 
         if (!isset($this->translations['app']) && !isset($this->translations['app*'])) {
             $this->translations['app'] = [
                 'class' => 'yii\i18n\PhpMessageSource',
-                'on missingTranslation' => $this->missingTranslationHandler
             ];
         }
 
         parent::init();
+
+        foreach ($this->translations as $key => $translateConfig)
+        {
+            if (!isset($this->translations[$key]['on missingTranslation']))
+            {
+                if (!in_array($key, ['yii']))
+                {
+                    $this->translations[$key]['on missingTranslation'] = $this->missingTranslationHandler;
+                }
+            }
+        }
     }
 
     public static function handleMissingTranslation(MissingTranslationEvent $event)
