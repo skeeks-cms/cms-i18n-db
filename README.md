@@ -19,9 +19,6 @@ or add
 ```
 
 
-How to use
-----------
-
 ### Configuration app
 ```php
 //App config
