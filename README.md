@@ -1,4 +1,4 @@
-Storage translations in a database component for SkeekS CMS
+Storage translations in a mysql database component for SkeekS CMS
 ===================================
 
 Installation
