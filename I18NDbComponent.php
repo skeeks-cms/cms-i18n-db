@@ -17,7 +17,7 @@ use yii\i18n\MissingTranslationEvent;
  * Class I18NDb
  * @package skeeks\cms\i18nDb
  */
-class I18NDbComponent extends \skeeks\cms\i18n\components\I18N
+class I18NDbComponent extends \skeeks\cms\i18n\I18N
 {
     /** @var array */
     public $missingTranslationHandler = ['skeeks\cms\i18nDb\I18NDbComponent', 'handleMissingTranslation'];
