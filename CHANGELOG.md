@@ -3,11 +3,11 @@ CHANGELOG
 
 1.0.0-alpha2
 -----------------
+  * Removed skeeks/cms/base/Module
   * Changed component
   
 1.0.0.alpha1
 -----------------
-  * Removed skeeks/cms/base/Module
   * Changed menu
 
 1.0.0.alpha
