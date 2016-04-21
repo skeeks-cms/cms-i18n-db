@@ -46,6 +46,12 @@ or add
 
 ```
 
+##Links
+* [Web site](http://en.cms.skeeks.com)
+* [Web site (rus)](http://cms.skeeks.com)
+* [Author](http://skeeks.com)
+* [ChangeLog](https://github.com/skeeks-cms/cms-i18n-db/blob/master/CHANGELOG.md)
+* [Page on SkeekS CMS Marketplace](http://marketplace.cms.skeeks.com/solutions/instrumentyi/razrabotchiku/243-storage-translations-in-a-mysql-database-component)
 
 ___
 
