@@ -23,5 +23,11 @@
         "psr-4": {
             "skeeks\\cms\\i18nDb\\": ""
         }
+    },
+    "extra": {
+        "config-plugin": {
+            "web": "config/main.php",
+            "console": "config/main-console.php"
+        }
     }
 }
