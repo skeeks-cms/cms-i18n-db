@@ -1,23 +1,23 @@
 <?php
 /**
+ * @link https://cms.skeeks.com/
+ * @copyright Copyright (c) 2010 SkeekS
+ * @license https://cms.skeeks.com/license/
  * @author Semenov Alexander <semenov@skeeks.com>
- * @link http://skeeks.com/
- * @copyright 2010 SkeekS (СкикС)
- * @date 21.12.2015
  */
+
 namespace skeeks\cms\i18nDb;
 
 use skeeks\cms\i18nDb\models\SourceMessage;
 use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
-use yii\i18n\DbMessageSource;
+use yii\i18n\I18N;
 use yii\i18n\MissingTranslationEvent;
 
 /**
- * Class I18NDb
- * @package skeeks\cms\i18nDb
+ * @author Semenov Alexander <semenov@skeeks.com>
  */
-class I18NDbComponent extends \skeeks\cms\i18n\I18N
+class I18NDbComponent extends I18N
 {
     /** @var array */
     public $missingTranslationHandler = ['skeeks\cms\i18nDb\I18NDbComponent', 'handleMissingTranslation'];
@@ -40,8 +40,7 @@ class I18NDbComponent extends \skeeks\cms\i18n\I18N
      */
     public function init()
     {
-        if (!isset($this->translations['*']))
-        {
+        if (!isset($this->translations['*'])) {
             $this->translations['*'] = [
                 'class' => 'yii\i18n\PhpMessageSource',
             ];
@@ -55,40 +54,39 @@ class I18NDbComponent extends \skeeks\cms\i18n\I18N
 
         parent::init();
 
-        foreach ($this->translations as $key => $translateConfig)
-        {
-            if (!isset($this->translations[$key]['on missingTranslation']))
-            {
-                if (!in_array($key, ['yii']))
-                {
+        foreach ($this->translations as $key => $translateConfig) {
+            if (!isset($this->translations[$key]['on missingTranslation'])) {
+                if (!in_array($key, ['yii'])) {
                     $this->translations[$key]['on missingTranslation'] = $this->missingTranslationHandler;
                 }
             }
         }
     }
 
+    /**
+     * @param MissingTranslationEvent $event
+     */
     public static function handleMissingTranslation(MissingTranslationEvent $event)
     {
-        \Yii::info("@DB: {$event->category}.{$event->message} FOR LANGUAGE {$event->language} @", static::className() . "::handleMissingTranslation");
+        \Yii::info("@DB: {$event->category}.{$event->message} FOR LANGUAGE {$event->language} @", static::class);
 
         $driver = \Yii::$app->getDb()->getDriverName();
         $caseInsensitivePrefix = $driver === 'mysql' ? 'binary' : '';
         $sourceMessage = SourceMessage::find()
-            ->where('category = :category and message = ' . $caseInsensitivePrefix . ' :message', [
+            ->where('category = :category and message = '.$caseInsensitivePrefix.' :message', [
                 ':category' => $event->category,
-                ':message' => $event->message
+                ':message'  => $event->message,
             ])
             ->with('messages')
             ->one();
 
-        if (!$sourceMessage)
-        {
-            \Yii::info("@WRITE TO DB: {$event->category}.{$event->message} FOR LANGUAGE {$event->language} @", static::className() . "::handleMissingTranslation");
+        if (!$sourceMessage) {
+            \Yii::info("@WRITE TO DB: {$event->category}.{$event->message} FOR LANGUAGE {$event->language} @", static::class);
 
             $sourceMessage = new SourceMessage();
             $sourceMessage->setAttributes([
                 'category' => $event->category,
-                'message' => $event->message
+                'message'  => $event->message,
             ], false);
 
             $sourceMessage->save(false);
@@ -99,8 +97,7 @@ class I18NDbComponent extends \skeeks\cms\i18n\I18N
 
         $messages = $sourceMessage->messages;
 
-        if (isset($messages[\Yii::$app->sourceLanguage]))
-        {
+        if (isset($messages[\Yii::$app->sourceLanguage])) {
             $message = $messages[\Yii::$app->sourceLanguage];
             $message->translation = $sourceMessage->message;
             $message->save(false);
@@ -110,8 +107,7 @@ class I18NDbComponent extends \skeeks\cms\i18n\I18N
          * @var $message Message
          */
         $message = ArrayHelper::getValue($sourceMessage->messages, \Yii::$app->language);
-        if ($message)
-        {
+        if ($message) {
             $event->translatedMessage = $message->translation;
         }
     }
