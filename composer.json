@@ -2,13 +2,11 @@
 	"name": "skeeks/cms-i18n-db",
 	"description": "Storage translations in a database component for SkeekS CMS",
 	"keywords": ["yii", "skeeks", "framework", "component", "i18n"],
-    	"homepage": "http://cms.skeeks.com/",
+    	"homepage": "https://cms.skeeks.com/",
 	"type": "yii2-extension",
-	"license": "GPL-3.0+",
+	"license": "BSD-3-Clause",
 	"support": {
-        "issues": "http://skeeks.com/",
-        "wiki": "http://en.cms.skeeks.com/docs/",
-        "source": "https://github.com/skeeks-cms/cms-i18n-db"
+        "issues": "https://skeeks.com/"
     },
 	"authors": [
 		{
@@ -17,17 +15,22 @@
 		}
 	],
 	"require": {
-		"skeeks/cms": "*"
+		"skeeks/cms": "^5.5.3 || dev-master"
 	},
     "autoload": {
         "psr-4": {
-            "skeeks\\cms\\i18nDb\\": ""
+            "skeeks\\cms\\i18nDb\\": "src/"
         }
     },
     "extra": {
         "config-plugin": {
-            "web": "config/main.php",
-            "console": "config/main-console.php"
+            "web": [
+                "src/config/common.php"
+            ],
+            "console": [
+                "src/config/common.php",
+                "src/config/console.php"
+            ]
         }
     }
 }
