@@ -6,12 +6,10 @@
  * @date 15.06.2015
  */
 return [
-
-    'modules' =>
-    [
+    'modules' => [
         'i18n' => [
-            "controllerNamespace"   => 'skeeks\cms\i18nDb\console\controllers'
-        ]
-    ]
+            "controllerNamespace" => 'skeeks\cms\i18nDb\console\controllers',
+        ],
+    ],
 
 ];
