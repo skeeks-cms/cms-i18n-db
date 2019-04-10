@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use skeeks\cms\modules\admin\widgets\form\ActiveFormUseTab as ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model \skeeks\cms\models\SourceMessage */
+/* @var $model \skeeks\cms\i18nDb\models\SourceMessage */
 ?>
 
 <?php $form = ActiveForm::begin(); ?>

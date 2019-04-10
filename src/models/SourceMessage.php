@@ -110,7 +110,6 @@ class SourceMessage extends ActiveRecord
             {
                 $message->save();
             }
-
         }
     }
 

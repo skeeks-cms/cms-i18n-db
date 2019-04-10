@@ -93,7 +93,7 @@ class I18NDbComponent extends I18N
         }
 
         $sourceMessage->initMessages();
-        $sourceMessage->saveMessages();
+        //$sourceMessage->saveMessages();
 
         $messages = $sourceMessage->messages;
 
