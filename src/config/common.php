@@ -27,7 +27,7 @@ return [
     'modules' =>
     [
         'i18n' => [
-            'class'                 => '\skeeks\cms\i18nDb\I18nDbModule',
+            'class'                 => 'skeeks\cms\i18nDb\I18nDbModule',
             "controllerNamespace"   => 'skeeks\cms\i18nDb\console\controllers'
         ]
     ]

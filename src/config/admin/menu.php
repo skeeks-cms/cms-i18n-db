@@ -18,7 +18,7 @@ return
                 [
                     [
                         "label"     => \Yii::t('skeeks/i18nDb/app',"Database of translations"),
-                        "url"       => ["i18nDb/admin-message"],
+                        "url"       => ["/i18n/admin-message"],
                         "img"       => ['\skeeks\cms\i18nDb\assets\I18nDbAsset', 'icons/lang.png']
                     ],
                 ],
