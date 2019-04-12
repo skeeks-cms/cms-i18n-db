@@ -85,6 +85,10 @@ class SourceMessage extends ActiveRecord
 
     public function initMessages()
     {
+        if (!isset(Yii::$app->i18n->languages)) {
+            return false;
+        }
+
         $messages = [];
         foreach (Yii::$app->i18n->languages as $language) {
             if (!isset($this->messages[$language])) {

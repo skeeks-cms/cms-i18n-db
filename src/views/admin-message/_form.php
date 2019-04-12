@@ -20,7 +20,7 @@ use skeeks\cms\modules\admin\widgets\form\ActiveFormUseTab as ActiveForm;
                 <div class="four wide column">
                     <?= $form->field($model->messages[$language], '[' . $language . ']translation')->label($lang->name . " ({$lang->code})")->textarea([
                         'rows' => 3
-                    ]) ?>
+                    ]); ?>
                 </div>
             <?php endforeach; ?>
         </div>
