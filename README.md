@@ -9,13 +9,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist skeeks/cms-cms-i18n-db "*"
+php composer.phar require --prefer-dist skeeks/cms-cms-i18n-db "^1.1.3"
 ```
 
 or add
 
 ```
-"skeeks/cms-i18n-db": "*"
+"skeeks/cms-i18n-db": "^1.1.3"
 ```
 
 
