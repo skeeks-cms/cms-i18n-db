@@ -99,6 +99,7 @@ class I18NDbComponent extends I18N
 
         if (isset($messages[\Yii::$app->sourceLanguage])) {
             $message = $messages[\Yii::$app->sourceLanguage];
+            $message->id = $sourceMessage->id;
             $message->translation = $sourceMessage->message;
             $message->save(false);
         }
