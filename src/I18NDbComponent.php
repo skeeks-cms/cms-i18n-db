@@ -40,24 +40,13 @@ class I18NDbComponent extends I18N
      */
     public function init()
     {
-        if (!isset($this->translations['*'])) {
-            $this->translations['*'] = [
-                'class' => 'yii\i18n\PhpMessageSource',
-            ];
-        }
-
-        if (!isset($this->translations['app']) && !isset($this->translations['app*'])) {
-            $this->translations['app'] = [
-                'class' => 'yii\i18n\PhpMessageSource',
-            ];
-        }
-
         parent::init();
 
         foreach ($this->translations as $key => $translateConfig) {
             if (!isset($this->translations[$key]['on missingTranslation'])) {
                 if (!in_array($key, ['yii'])) {
                     $this->translations[$key]['on missingTranslation'] = $this->missingTranslationHandler;
+                    $this->translations[$key]['forceTranslation'] = true;
                 }
             }
         }
@@ -68,6 +57,7 @@ class I18NDbComponent extends I18N
      */
     public static function handleMissingTranslation(MissingTranslationEvent $event)
     {
+
         \Yii::info("@DB: {$event->category}.{$event->message} FOR LANGUAGE {$event->language} @", static::class);
 
         $driver = \Yii::$app->getDb()->getDriverName();
@@ -92,22 +82,23 @@ class I18NDbComponent extends I18N
             $sourceMessage->save(false);
         }
 
-        $sourceMessage->initMessages();
+        //$sourceMessage->initMessages();
         //$sourceMessage->saveMessages();
 
-        $messages = $sourceMessage->messages;
+        /*$messages = $sourceMessage->messages;
 
         if (isset($messages[\Yii::$app->sourceLanguage])) {
             $message = $messages[\Yii::$app->sourceLanguage];
             $message->id = $sourceMessage->id;
             $message->translation = $sourceMessage->message;
             $message->save(false);
-        }
+        }*/
 
         /**
          * @var $message Message
          */
         $message = ArrayHelper::getValue($sourceMessage->messages, \Yii::$app->language);
+
         if ($message) {
             $event->translatedMessage = $message->translation;
         }
