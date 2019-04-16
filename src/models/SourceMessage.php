@@ -13,10 +13,13 @@ use yii\base\InvalidConfigException;
 use yii\db\ActiveRecord;
 
 /**
+ *
+ * @property string $category;
+ * @property string $message;
+ *
  * @var Message[] $messages
  *
- * Class SourceMessage
- * @package skeeks\cms\models
+ * @author Semenov Alexander <semenov@skeeks.com>
  */
 class SourceMessage extends ActiveRecord
 {

@@ -11,6 +11,12 @@ use Yii;
 use yii\base\InvalidConfigException;
 use yii\db\ActiveRecord;
 
+/**
+ * @property string $translation;
+ * @property string $language;
+ *
+ * @author Semenov Alexander <semenov@skeeks.com>
+ */
 class Message extends ActiveRecord
 {
     /**
