@@ -25,7 +25,7 @@ use skeeks\cms\modules\admin\widgets\form\ActiveFormUseTab as ActiveForm;
             <?php endforeach; ?>
         </div>
     </div>
-    <?= $form->buttonsCreateOrUpdate($model); ?>
+    <?= $form->buttonsStandart($model); ?>
 
 <?php ActiveForm::end(); ?>
 
