@@ -12,4 +12,12 @@ return [
         ],
     ],
 
+    'controllerMap' => [
+        'migrate' => [
+            'migrationPath' => [
+                '@skeeks/cms/i18nDb/migrations',
+            ],
+        ],
+    ]
+
 ];
