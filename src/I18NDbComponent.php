@@ -66,39 +66,47 @@ class I18NDbComponent extends I18N
 
             $driver = \Yii::$app->getDb()->getDriverName();
             $caseInsensitivePrefix = $driver === 'mysql' ? 'binary' : '';
-            $sourceMessage = SourceMessage::find()
-                ->where('category = :category and message = '.$caseInsensitivePrefix.' :message', [
-                    ':category' => $event->category,
-                    ':message'  => $event->message,
-                ])
-                ->with('messages')
-                ->one();
 
-            if (!$sourceMessage) {
-                \Yii::info("@WRITE TO DB: {$event->category}.{$event->message} FOR LANGUAGE {$event->language} @", static::class);
+            $message = $event->message;
+            try {
+                $sourceMessage = SourceMessage::find()
+                    ->where('category = :category and message = '.$caseInsensitivePrefix.' :message', [
+                        ':category' => $event->category,
+                        ':message'  => $event->message,
+                    ])
+                    ->with('messages')
+                    ->one();
 
-                $sourceMessage = new SourceMessage();
-                $sourceMessage->setAttributes([
-                    'category' => $event->category,
-                    'message'  => $event->message,
-                ], false);
+                if (!$sourceMessage) {
+                    \Yii::info("@WRITE TO DB: {$event->category}.{$event->message} FOR LANGUAGE {$event->language} @", static::class);
 
-                $sourceMessage->save(false);
+                    $sourceMessage = new SourceMessage();
+                    $sourceMessage->setAttributes([
+                        'category' => $event->category,
+                        'message'  => $event->message,
+                    ], false);
+
+                    $sourceMessage->save(false);
+                }
+
+                /**
+                 * @var $message Message
+                 */
+                //print_r($sourceMessage->messages);
+                if ($sourceMessage->messages) {
+                    $messages = ArrayHelper::map($sourceMessage->messages, "language", "translation");
+                } else {
+                    $messages = [];
+                }
+
+                $cache->set($key, $messages);
+                $message = ArrayHelper::getValue($messages, \Yii::$app->language);
+
+            } catch (\Exception $exception) {
+                $sourceMessage = null;
             }
-            /**
-             * @var $message Message
-             */
-            //print_r($sourceMessage->messages);
-            if ($sourceMessage->messages) {
-                $messages = ArrayHelper::map($sourceMessage->messages, "language", "translation");
-            } else {
-                $messages = [];
-            }
-
-            $cache->set($key, $messages);
         }
 
-        $message = ArrayHelper::getValue($messages, \Yii::$app->language);
 
         if ($message) {
             $event->translatedMessage = $message;
