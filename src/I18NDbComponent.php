@@ -61,13 +61,14 @@ class I18NDbComponent extends I18N
         $key = $event->category.$event->message.$event->language;
         $messages = $cache->get($key);
 
+        $message = $event->message;
+        
         if ($messages === false) {
             \Yii::info("@DB: No cache {$event->category}.{$event->message} FOR LANGUAGE {$event->language} @", static::class);
 
             $driver = \Yii::$app->getDb()->getDriverName();
             $caseInsensitivePrefix = $driver === 'mysql' ? 'binary' : '';
 
-            $message = $event->message;
             try {
                 $sourceMessage = SourceMessage::find()
                     ->where('category = :category and message = '.$caseInsensitivePrefix.' :message', [
